@@ -53,13 +53,34 @@ We make the following models from our ablations publicly available on HuggingFac
 
 ## Training the models with the [vec2text](https://github.com/jxmorris12/vec2text/tree/master) codebase
 
-**TODO: fill this in**
+From the base [vec2text](https://github.com/jxmorris12/vec2text/tree/master) directory, we run the following commands to produce our models:
+
+1. GTR, Natural Questions, 32, Base
+```
+python3 -m vec2text.run --per_device_train_batch_size 1420 --per_device_eval_batch_size 1420 --max_seq_length 32 --model_name_or_path t5-base --dataset_name nq --embedder_model_name gtr_base --num_repeat_tokens 16 --embedder_no_grad True --num_train_epochs 5 --max_eval_samples 500 --eval_steps 20000 --warmup_steps 10000 --bf16=1 --use_wandb=1 --use_frozen_embeddings_as_input True --experiment inversion --lr_scheduler_type constant_with_warmup --exp_group_name oct-gtr --learning_rate 0.001 --output_dir ./saves/gtr-nq-full-5epoch-1420 --save_steps 2000
+```
+
+2. GTR, Natural Questions, 32, Corrector
+```
+python3 -m vec2text.run --per_device_train_batch_size 1420 --per_device_eval_batch_size 1420 --max_seq_length 32 --model_name_or_path t5-base --dataset_name nq --embedder_model_name gtr_base --num_repeat_tokens 16 --embedder_no_grad True --num_train_epochs 5 --max_eval_samples 500 --eval_steps 20000 --warmup_steps 10000 --bf16=1 --use_wandb=1 --use_frozen_embeddings_as_input True --experiment corrector --lr_scheduler_type constant_with_warmup --exp_group_name oct-gtr --learning_rate 0.001 --output_dir ./saves/gtr-corrector-nq-full-5epoch-1420 --save_steps 2000 --corrector_model_alias gtr_nq__msl32__5epoch
+```
+
+3. OpenAI, MSMARCO, 128, Base
+```
+python3 -m vec2text.run --per_device_train_batch_size 350 --per_device_eval_batch_size 350 --max_seq_length 128 --model_name_or_path t5-base --dataset_name msmarco --embedder_model_name gtr_base --num_repeat_tokens 16 --embedder_no_grad True  --num_train_epochs 5 --max_eval_samples 500 --eval_steps 20000 --warmup_steps 10000 --bf16=1 --use_wandb=1 --use_frozen_embeddings_as_input True --experiment inversion --lr_scheduler_type constant_with_warmup --embedder_model_api text-embedding-ada-002  --exp_group_name jun3-openai-4gpu-ddp-3 --learning_rate 0.001 --output_dir ./saves/msmarco-350-ada-5epoch --save_steps 2000 --use_less_data 1000000 
+```
+
+5. OpenAI, MSMARCO, 128, Corrector
+```
+python3 -m vec2text.run --per_device_train_batch_size 350 --per_device_eval_batch_size 350 --max_seq_length 32 --model_name_or_path t5-base --dataset_name nq --embedder_model_name gtr_base --num_repeat_tokens 16 --embedder_no_grad True --num_train_epochs 5 --max_eval_samples 500 --eval_steps 20000 --warmup_steps 10000 --bf16=1 --use_wandb=1 --use_frozen_embeddings_as_input True --experiment corrector --lr_scheduler_type constant_with_warmup --exp_group_name oct-gtr --learning_rate 0.001 --output_dir ./saves/ada-corrector-msmarco-full-5epoch-350 --save_steps 2000 --corrector_model_alias ada_msmarco_msl128_5epoch  --use_less_data 1000000 
+```
 
 
 ## Running the evaluation scripts 
 
 As mentioned earlier in the README, scripts of the format `evalute_[pretrained/ours]_[gtr/openai/beir].py` contain the appropriate calls at the bottom of their respective files. 
 These calls produced the results shown in the the [Evaluation results](https://github.com/emilymweiss/vec2text_662_project/edit/main/README.md#evaluation-results) section. 
+
 
 ### A note about evaluating our 0 step model results 
 We discovered that Morris et al.'s [run.py](https://github.com/jxmorris12/vec2text/blob/master/vec2text/run.py) in the Vec2Text Github evaluates the hypothesizer, 0 step models once they have been trained.
