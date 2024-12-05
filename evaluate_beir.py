@@ -202,7 +202,7 @@ if __name__ == "__main__":
     parser.add_argument('--output_dir', type=str, default="ood_results")
     parser.add_argument('--max_length', type=int, default=32, help="max length of embedding") 
     parser.add_argument('--num_steps', type=int, default=0, help="max number of steps") 
-    parser.add_argument('--model', type=str, default="hallisky/gtr-nq-32-corrector-5epoch", help="Other options: [hallisky/gtr-nq-32-corrector-5epoch, hallisky/gtr-nq-32-hypothesizer-5epoch]") 
+    parser.add_argument('--model', type=str, default="hallisky/gtr-nq-32-corrector-5epoch", help="Other options: [hallisky/gtr-nq-32-corrector-5epoch, gtr-base]") 
 
 
 
