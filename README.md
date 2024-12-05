@@ -55,6 +55,9 @@ We make the following models from our ablations publicly available on HuggingFac
 
 ## Running the evaluation scripts 
 
+As mentioned earlier in the README, scripts of the format `evalute_[pretrained/ours]_[gtr/openai/beir].py` contain the appropriate calls at the bottom of their respective files. 
+These calls produced the results shown in the the [Evaluation results](https://github.com/emilymweiss/vec2text_662_project/edit/main/README.md#evaluation-results) section. 
+
 ## Evaluation results 
 
 **TODO: ADD TABLES FROM PAPER FOR CORE RESULTS**
