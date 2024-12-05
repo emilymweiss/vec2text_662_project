@@ -151,8 +151,9 @@ def main(args):
         inversion_model = vec2text.models.InversionModel.from_pretrained("hallisky/gtr-nq-32-base-5epoch", cache_dir="/gscratch/xlab/hallisky/cache/")
         corrector_model = vec2text.models.CorrectorEncoderModel.from_pretrained("hallisky/gtr-nq-32-corrector-5epoch", cache_dir="/gscratch/xlab/hallisky/cache/")
         corrector = vec2text.load_corrector(inversion_model, corrector_model)
-    elif args.model == "hallisky/gtr-nq-32-base-5epoch":
-        corrector = vec2text.load_pretrained_corrector("hallisky/gtr-nq-32-base-5epoch")
+    ## Vec2Text API does not suport only loading the inverter
+    # elif args.model == "hallisky/gtr-nq-32-base-5epoch":
+    #     corrector = vec2text.load_pretrained_corrector("hallisky/gtr-nq-32-base-5epoch")
     else:
         sys.exit("Invalid model provided")
 
