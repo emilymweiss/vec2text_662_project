@@ -192,8 +192,12 @@ def main(args):
     os.makedirs(args.output_dir, exist_ok=True)
 
     # Save to file 
-    with open(os.path.join(args.output_dir, f"{args.eval_dataset}_{args.num_steps}_{args.model.split('/')[-1]}_results.json"), "w") as f:
-        json.dump(results, f, indent=4)
+    if args.model == "hallisky/gtr-nq-32-corrector-5epoch":
+        with open(os.path.join(args.output_dir, f"{args.eval_dataset}_{args.num_steps}_{args.model.split('/')[-1]}_results.json"), "w") as f:
+            json.dump(results, f, indent=4)
+    elif args.model == "gtr-base":
+        with open(os.path.join(args.output_dir, f"{args.eval_dataset}_{args.num_steps}_pretrained_results.json"), "w") as f:
+            json.dump(results, f, indent=4)
 
 if __name__ == "__main__": 
     parser = argparse.ArgumentParser(description="A simple example of argparse")
