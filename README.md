@@ -51,6 +51,7 @@ We make the following models from our ablations publicly available on HuggingFac
 
 - **TODO**
 
+## Training the models with the [vec2text](https://github.com/jxmorris12/vec2text/tree/master) codebase
 
 ## Running the evaluation scripts 
 
