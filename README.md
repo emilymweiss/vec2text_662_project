@@ -58,11 +58,13 @@ We make the following models from our ablations publicly available on HuggingFac
 As mentioned earlier in the README, scripts of the format `evalute_[pretrained/ours]_[gtr/openai/beir].py` contain the appropriate calls at the bottom of their respective files. 
 These calls produced the results shown in the the [Evaluation results](https://github.com/emilymweiss/vec2text_662_project/edit/main/README.md#evaluation-results) section. 
 
+### A note about evaluating our 0 step model results 
+We discovered that Morris et al.'s [run.py](https://github.com/jxmorris12/vec2text/blob/master/vec2text/run.py) in the Vec2Text Github evaluates the hypothesizer, 0 step models once they have been trained.
+Thus, we did not explicitly run our evaluation script on our base models, and instead chose to report the results of the built-in evaluation in [Evaluation results](https://github.com/emilymweiss/vec2text_662_project/edit/main/README.md#evaluation-results). 
+
 ## Evaluation results 
 
 **TODO: ADD TABLES FROM PAPER FOR CORE RESULTS**
-
-### A note about our 0 step model results 
 
 
 # Citation to Original Paper
