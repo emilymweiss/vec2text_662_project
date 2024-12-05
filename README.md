@@ -6,6 +6,7 @@ This repository contains scripts used to evaluate the pretrained Vec2Text models
 Scripts of the format `evalute_[pretrained/ours]_[gtr/openai/beir].py` contain the appropriate calls at the bottom of the file. 
 
 ## Dependencies
+Dependencies required to run our evaluation scripts can be found in `requirements.txt`.
 
 ## Getting the data
 
