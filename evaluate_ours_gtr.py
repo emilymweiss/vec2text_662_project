@@ -1,5 +1,5 @@
 '''
-Note: modified from code in the vec2text github.
+Note: Evaluation script modified from code in the vec2text github's Python files and README.
 
 Sources:
 1. general structure and get_gtr_embeddings function from:
@@ -8,7 +8,7 @@ Sources:
         eval_generation_metrics in vec2text/trainers/base.py:
         https://github.com/jxmorris12/vec2text/blob/master/vec2text/trainers/base.py
 
-Original Author: Jack Morris
+Original Author: John X. Morris
 Editors: Emily Weiss, Skyler Hallinan
 '''
 
