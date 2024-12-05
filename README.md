@@ -78,11 +78,44 @@ python3 -m vec2text.run --per_device_train_batch_size 350 --per_device_eval_batc
 
 ## Running the evaluation scripts 
 
-As mentioned earlier in the README, scripts of the format `evalute_[pretrained/ours]_[gtr/openai/beir].py` contain the appropriate calls at the bottom of their respective files. 
-These calls produced the results shown in the the [Evaluation results](https://github.com/emilymweiss/vec2text_662_project/edit/main/README.md#evaluation-results) section. 
+As mentioned earlier in the README, the scripts `evaluate_ours_gtr.py`, `evaluate_beir.py`, and `evaluate_pretrained_openai.py` contain the commands to reproduce our results at the end of the files. 
+These calls produced the results shown in the the [Evaluation results](https://github.com/emilymweiss/vec2text_662_project/edit/main/README.md#evaluation-results) section.
+We copy the calls here for convenience:
+1. Evaluate our GTR, Natural Questions, 32, Corrector with 20 corrective steps:
+```
+python --model=hallisky/gtr-nq-32-corrector-5epoch --num_steps 20 --batch_size 384
+```
+
+2. Evaluate our OpenAI, MSMARCO, 128, Corrector with 20 corrective steps:
+```
+**TODO: add this call**
+```
+
+3. Evaluate the authors' pre-trained OpenAI, MSMARCO, 128, Base and Corrector models with 20 corrective steps:
+```
+python --num_steps 0 --batch_size 384
+python --num_steps 20 --batch_size 64
+```
+
+4. Evaluate all models on select datasets from the BEIR benchmark. 
+```
+**TODO: add these calls and edit evaluate_beir.py file to reflect changes***
+```
 
 
-### A note about evaluating our 0 step model results 
+Finally, to evaluate the authors' pre-trained GTR, Natural Questions, 32, Base and Corrector models, we ran the following script from the authors' README: [Evaluate the models from the papers](https://github.com/jxmorris12/vec2text/tree/master#evaluate-the-models-from-the-papers).
+Note that we replaced `"jxm/gtr__nq__32__correct"` in the following line with `"jxm/gtr__nq__32"`...
+```python
+experiment, trainer = analyze_utils.load_experiment_and_trainer_from_pretrained(
+     "jxm/gtr__nq__32__correct"
+)
+```
+... and changed `num_gen_recursive_steps` to 0 to evaluate their pre-trained base model. 
+
+
+
+### A note about evaluating 0 step models
+**TODO!!!! Add more clarity here**
 We discovered that Morris et al.'s [run.py](https://github.com/jxmorris12/vec2text/blob/master/vec2text/run.py) in the Vec2Text Github evaluates the hypothesizer, 0 step models once they have been trained.
 Thus, we did not explicitly run our evaluation script on our base models, and instead chose to report the results of the built-in evaluation in [Evaluation results](https://github.com/emilymweiss/vec2text_662_project/edit/main/README.md#evaluation-results). 
 
