@@ -1,14 +1,14 @@
 '''
-Note: modified from code in the vec2text github.
+Note: Evaluation script modified from code in the vec2text github Python files and README.
 
 Sources:
 1. general structure and get_gtr_embeddings function from: 
         https://github.com/jxmorris12/vec2text/tree/master?tab=readme-ov-file#similarly-you-can-invert-gtr-base-embeddings-with-the-following-example
 2. bleu and tf1 code modified from _text_comparison_metrics in vec2text/trainers/base.py: 
         https://github.com/jxmorris12/vec2text/blob/master/vec2text/trainers/base.py
-
-Author: Emily Weiss
-Editor: Skyler Hallinan
+        
+Original Author: John X. Morris 
+Editors: Emily Weiss, Skyler Hallinan
 '''
 import os
 # TODO Emily: Delete if you ever run this
