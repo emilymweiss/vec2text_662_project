@@ -53,6 +53,9 @@ We make the following models from our ablations publicly available on HuggingFac
 
 ## Training the models with the [vec2text](https://github.com/jxmorris12/vec2text/tree/master) codebase
 
+**TODO: fill this in**
+
+
 ## Running the evaluation scripts 
 
 As mentioned earlier in the README, scripts of the format `evalute_[pretrained/ours]_[gtr/openai/beir].py` contain the appropriate calls at the bottom of their respective files. 
