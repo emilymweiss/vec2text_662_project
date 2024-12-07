@@ -72,7 +72,7 @@ python3 -m vec2text.run --per_device_train_batch_size 350 --per_device_eval_batc
 
 4. OpenAI, MSMARCO, 128, Corrector
 ```
-python3 -m vec2text.run --per_device_train_batch_size 350 --per_device_eval_batch_size 350 --max_seq_length 128 --model_name_or_path t5-base --dataset_name nq --embedder_model_name gtr_base --num_repeat_tokens 16 --embedder_no_grad True --num_train_epochs 5 --max_eval_samples 500 --eval_steps 20000 --warmup_steps 10000 --bf16=1 --use_wandb=1 --use_frozen_embeddings_as_input True --experiment corrector --lr_scheduler_type constant_with_warmup --exp_group_name oct-gtr --learning_rate 0.001 --output_dir ./saves/ada-corrector-msmarco-full-5epoch-350 --save_steps 2000 --corrector_model_alias ada_msmarco_msl128_5epoch  --use_less_data 1000000 
+python3 -m vec2text.run --per_device_train_batch_size 350 --per_device_eval_batch_size 350 --max_seq_length 128 --model_name_or_path t5-base --dataset_name msmarco --embedder_model_name gtr_base --num_repeat_tokens 16 --embedder_no_grad True --num_train_epochs 5 --max_eval_samples 500 --eval_steps 20000 --warmup_steps 10000 --bf16=1 --use_wandb=1 --use_frozen_embeddings_as_input True --experiment corrector --lr_scheduler_type constant_with_warmup --exp_group_name oct-gtr --learning_rate 0.001 --output_dir ./saves/ada-corrector-msmarco-full-5epoch-350 --save_steps 2000 --corrector_model_alias ada_msmarco_msl128_5epoch  --use_less_data 1000000 
 ```
 
 
