@@ -12,9 +12,6 @@ Original Author: John X. Morris
 Editors: Emily Weiss, Skyler Hallinan
 '''
 
-from openai import OpenAI
-import os
-
 os.environ["HF_HOME"] = "/gscratch/xlab/hallisky/cache/"
 os.environ["HUGGINGFACE_HUB_CACHE"] = "/gscratch/xlab/hallisky/cache/"
 os.environ["HF_DATASETS_CACHE"] = "/gscratch/xlab/hallisky/cache/"
