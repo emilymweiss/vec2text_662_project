@@ -57,9 +57,6 @@ def get_gtr_embeddings(text_list,
 
 """Based on _text_comparison_metrics function from link in Source 2."""
 def get_tf1(preds, truth):
-    precision = 0
-    recall = 0
-
     f1s = []
     for i in range(len(preds)):
         true_words = nltk.tokenize.word_tokenize(truth[i])
