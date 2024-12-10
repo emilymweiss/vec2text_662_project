@@ -44,7 +44,7 @@ We make the following models from our reproduction attempts publicly available o
 1. GTR, Natural Questions, 32, Base - https://huggingface.co/hallisky/gtr-nq-32-base-5epoch
 2. GTR, Natural Questions, 32, Corrector - https://huggingface.co/hallisky/gtr-nq-32-corrector-5epoch
 3. OpenAI, MSMARCO, 128, Base - https://huggingface.co/hallisky/ada-msmarco-128-base-5epoch
-4. OpenAI, MSMARCO, 128, Corrector - **TODO ADD**
+4. OpenAI, MSMARCO, 128, Corrector - https://huggingface.co/hallisky/ada-msmarco-128-corrector-5epoch
 
 
 We make the following models from our ablations publicly available on HuggingFace:
