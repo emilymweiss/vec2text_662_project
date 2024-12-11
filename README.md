@@ -119,9 +119,19 @@ experiment, trainer = analyze_utils.load_experiment_and_trainer_from_pretrained(
 We discovered that Morris et al.'s [run.py](https://github.com/jxmorris12/vec2text/blob/master/vec2text/run.py) in the Vec2Text Github evaluates the hypothesizer, 0 step models once they have been trained.
 Thus, we did not explicitly run our evaluation script on our base models, and instead chose to report the results of the built-in evaluation in [Evaluation results](https://github.com/emilymweiss/vec2text_662_project/edit/main/README.md#evaluation-results). 
 
+## Running our ablations 
+
 ## Evaluation results 
 
-**TODO: ADD TABLES FROM PAPER FOR CORE RESULTS**
+Our core reproduction results are shown in the tables below. 
+These results were produced using the steps dicsussed in [Running the evaluation scripts](https://github.com/emilymweiss/vec2text_662_project/edit/main/README.md#running-the-evaluation-scripts).
+
+<img width="770" alt="Table1" src="https://github.com/user-attachments/assets/6779451a-5c79-4d80-a070-5cd0daa1362e" />
+
+
+<img width="751" alt="Table2" src="https://github.com/user-attachments/assets/d6556496-a720-48f8-88fe-cc7bca2f54f5" />
+
+**TODO: add any additional results?**
 
 
 # Citation to Original Paper
