@@ -46,11 +46,6 @@ We make the following models from our reproduction attempts publicly available o
 3. OpenAI, MSMARCO, 128, Base - https://huggingface.co/hallisky/ada-msmarco-128-base-5epoch
 4. OpenAI, MSMARCO, 128, Corrector - https://huggingface.co/hallisky/ada-msmarco-128-corrector-5epoch
 
-
-We make the following models from our ablations publicly available on HuggingFace:
-
-- **TODO**
-
 ## Training the models with the [vec2text](https://github.com/jxmorris12/vec2text/tree/master) codebase
 
 From the base [vec2text](https://github.com/jxmorris12/vec2text/tree/master) directory, we run the following commands to produce our models:
@@ -83,27 +78,41 @@ These calls produced the results shown in the the [Evaluation results](https://g
 We copy the calls here for convenience:
 1. Evaluate our GTR, Natural Questions, 32, Corrector with 20 corrective steps:
 ```
-python --model=hallisky/gtr-nq-32-corrector-5epoch --num_steps 20 --batch_size 384
+python evaluate_ours_gtr.py --num_steps 20 --batch_size 384
 ```
 
 2. Evaluate our OpenAI, MSMARCO, 128, Corrector with 20 corrective steps:
 ```
-**TODO: add this call**
+python evaluate_ours_openai.py --num_steps 20 --batch_size 64
 ```
 
 3. Evaluate the authors' pre-trained OpenAI, MSMARCO, 128, Base and Corrector models with 20 corrective steps:
 ```
-python --num_steps 0 --batch_size 384
-python --num_steps 20 --batch_size 64
+python evaluate_pretrained_openai.py --num_steps 0 --batch_size 384
+python evaluate_pretrained_openai.py --num_steps 20 --batch_size 64
 ```
 
-4. Evaluate all models on select datasets from the BEIR benchmark. 
+4. Evaluate the GTR/NQ models on select datasets from the BEIR benchmark. (These commands are only for our 20-step model. To change the number of corrective steps, change --num_steps to 0. To change the model to the pre-trained model, change --model to gtr-base.)
 ```
-**TODO: add these calls and edit evaluate_beir.py file to reflect changes***
+python evaluate_beir.py --batch_size 190 --eval_dataset quora --max_length 32 --model hallisky/gtr-nq-32-corrector-5epoch --num_steps 20 --output_dir ood_results
+python evaluate_beir.py --batch_size 190 --eval_dataset msmarco --max_length 32 --model hallisky/gtr-nq-32-corrector-5epoch --num_steps 20 --output_dir ood_results
+python evaluate_beir.py --batch_size 190 --eval_dataset climate-fever --max_length 32 --model hallisky/gtr-nq-32-corrector-5epoch --num_steps 20 --output_dir ood_results
+python evaluate_beir.py --batch_size 190 --eval_dataset fever --max_length 32 --model hallisky/gtr-nq-32-corrector-5epoch --num_steps 20 --output_dir ood_results
+python evaluate_beir.py --batch_size 190 --eval_dataset dbpedia-entity --max_length 32 --model hallisky/gtr-nq-32-corrector-5epoch --num_steps 20 --output_dir ood_results
+python evaluate_beir.py --batch_size 190 --eval_dataset nq --max_length 32 --model hallisky/gtr-nq-32-corrector-5epoch --num_steps 20 --output_dir ood_results
+python evaluate_beir.py --batch_size 190 --eval_dataset hotpotqa --max_length 32 --model hallisky/gtr-nq-32-corrector-5epoch --num_steps 20 --output_dir ood_results
+python evaluate_beir.py --batch_size 190 --eval_dataset fiqa --max_length 32 --model hallisky/gtr-nq-32-corrector-5epoch --num_steps 20 --output_dir ood_results
+python evaluate_beir.py --batch_size 190 --eval_dataset webis-touche2020 --max_length 32 --model hallisky/gtr-nq-32-corrector-5epoch --num_steps 20 --output_dir ood_results
+python evaluate_beir.py --batch_size 190 --eval_dataset cqadupstack-generated-queries --max_length 32 --model hallisky/gtr-nq-32-corrector-5epoch --num_steps 20 --output_dir ood_results
+python evaluate_beir.py --batch_size 190 --eval_dataset arguana --max_length 32 --model hallisky/gtr-nq-32-corrector-5epoch --num_steps 20 --output_dir ood_results
+python evaluate_beir.py --batch_size 190 --eval_dataset scidocs --max_length 32 --model hallisky/gtr-nq-32-corrector-5epoch --num_steps 20 --output_dir ood_results
+python evaluate_beir.py --batch_size 190 --eval_dataset trec-covid --max_length 32 --model hallisky/gtr-nq-32-corrector-5epoch --num_steps 20 --output_dir ood_results
+python evaluate_beir.py --batch_size 190 --eval_dataset scifact --max_length 32 --model hallisky/gtr-nq-32-corrector-5epoch --num_steps 20 --output_dir ood_results
+python evaluate_beir.py --batch_size 190 --eval_dataset nfcorpus --max_length 32 --model hallisky/gtr-nq-32-corrector-5epoch --num_steps 20 --output_dir ood_results
 ```
 
 
-Finally, to evaluate the authors' pre-trained GTR, Natural Questions, 32, Base and Corrector models, we ran the following script from the authors' README: [Evaluate the models from the papers](https://github.com/jxmorris12/vec2text/tree/master#evaluate-the-models-from-the-papers).
+5. Finally, to evaluate the authors' pre-trained GTR, Natural Questions, 32, Base and Corrector models, we ran the following script from the authors' README: [Evaluate the models from the papers](https://github.com/jxmorris12/vec2text/tree/master#evaluate-the-models-from-the-papers).
 Note that we replaced `"jxm/gtr__nq__32__correct"` in the following line with `"jxm/gtr__nq__32"`...
 ```python
 experiment, trainer = analyze_utils.load_experiment_and_trainer_from_pretrained(
@@ -115,11 +124,13 @@ experiment, trainer = analyze_utils.load_experiment_and_trainer_from_pretrained(
 
 
 ### A note about evaluating 0 step models
-**TODO!!!! Add more clarity here**
-We discovered that Morris et al.'s [run.py](https://github.com/jxmorris12/vec2text/blob/master/vec2text/run.py) in the Vec2Text Github evaluates the hypothesizer, 0 step models once they have been trained.
-Thus, we did not explicitly run our evaluation script on our base models, and instead chose to report the results of the built-in evaluation in [Evaluation results](https://github.com/emilymweiss/vec2text_662_project/edit/main/README.md#evaluation-results). 
+We discovered that Morris et al.'s training script, [run.py](https://github.com/jxmorris12/vec2text/blob/master/vec2text/run.py) in the Vec2Text Github, evaluates 0-step models at the end of training.
+Thus, we did not explicitly run our evaluation scripts for the in-domain datasets on our 0-step models. 
+Instead, we chose to report the results of the built-in evaluation for those models, as seen in [Evaluation results](https://github.com/emilymweiss/vec2text_662_project/edit/main/README.md#evaluation-results). 
 
 ## Running our ablations 
+
+**TODO?**
 
 ## Evaluation results 
 
@@ -131,7 +142,6 @@ These results were produced using the steps dicsussed in [Running the evaluation
 
 <img width="751" alt="Table2" src="https://github.com/user-attachments/assets/d6556496-a720-48f8-88fe-cc7bca2f54f5" />
 
-**TODO: add any additional results?**
 
 
 # Citation to Original Paper
