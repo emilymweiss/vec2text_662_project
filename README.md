@@ -62,7 +62,7 @@ python3 -m vec2text.run --per_device_train_batch_size 1420 --per_device_eval_bat
 
 2. GTR, Natural Questions, 32, Corrector
 ```
-python3 -m vec2text.run --per_device_train_batch_size 1420 --per_device_eval_batch_size 1420 --max_seq_length 32 --model_name_or_path t5-base --dataset_name nq --embedder_model_name gtr_base --num_repeat_tokens 16 --embedder_no_grad True --num_train_epochs 5 --max_eval_samples 500 --eval_steps 20000 --warmup_steps 10000 --bf16=1 --use_wandb=1 --use_frozen_embeddings_as_input True --experiment corrector --lr_scheduler_type constant_with_warmup --exp_group_name oct-gtr --learning_rate 0.001 --output_dir ./saves/gtr-corrector-nq-full-5epoch-1420 --save_steps 2000 --corrector_model_alias gtr_nq__msl32__5epoch
+python3 -m vec2text.run --per_device_train_batch_size 1420 --per_device_eval_batch_size 1420 --max_seq_length 32 --model_name_or_path t5-base --dataset_name nq --embedder_model_name gtr_base --num_repeat_tokens 16 --embedder_no_grad True --num_train_epochs 3.3 --max_eval_samples 500 --eval_steps 20000 --warmup_steps 10000 --bf16=1 --use_wandb=1 --use_frozen_embeddings_as_input True --experiment corrector --lr_scheduler_type constant_with_warmup --exp_group_name oct-gtr --learning_rate 0.001 --output_dir ./saves/gtr-corrector-nq-full-5epoch-1420 --save_steps 2000 --corrector_model_alias gtr_nq__msl32__5epoch
 ```
 
 3. OpenAI, MSMARCO, 128, Base
