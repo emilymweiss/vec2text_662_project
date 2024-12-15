@@ -3,7 +3,7 @@
 Morris et al.'s original repository can be found here: https://github.com/jxmorris12/vec2text.
 
 This repository contains scripts used to evaluate the pretrained Vec2Text models publicly available on HuggingFace, and the models we trained for our reproduction.
-Scripts of the format `evalute_[pretrained/ours]_[gtr/openai/beir].py` contain the appropriate calls at the bottom of the file. 
+Scripts of the format `evalute_[pretrained/ours]_[gtr/openai/beir/ood].py` contain the appropriate calls at the bottom of the file. 
 
 ## Dependencies
 Dependencies required to run our evaluation scripts can be found in `requirements.txt`.
