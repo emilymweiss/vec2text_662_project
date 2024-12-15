@@ -30,7 +30,7 @@ word_list = list(c)
 
 # magic numbers 
 num_rows = 15000
-max_tokens = 256 # 32
+max_tokens = 32
 min_tokens = 1
 
 # make list of new, random texts 
