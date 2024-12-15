@@ -129,8 +129,36 @@ Thus, we did not explicitly run our evaluation scripts for the in-domain dataset
 Instead, we chose to report the results of the built-in evaluation for those models, as seen in [Evaluation results](https://github.com/emilymweiss/vec2text_662_project/edit/main/README.md#evaluation-results). 
 
 ## Running our ablations 
+### Training the GTE/NQ models:
+1. GTE/NQ Base
+```
+python run.py --per_device_train_batch_size 1420 --per_device_eval_batch_size 1420 --max_seq_length 32 --model_name_or_path t5-base --dataset_name nq --embedder_model_name gte_base --num_repeat_tokens 16 --embedder_no_grad True --num_train_epochs 5 --max_eval_samples 500 --eval_steps 20000 --warmup_steps 10000 --bf16=1 --use_wandb=1 --use_frozen_embeddings_as_input True --experiment inversion --lr_scheduler_type constant_with_warmup --exp_group_name oct-gtr --learning_rate 0.001 --output_dir ./saves/gte-nq-full-5epoch-1420 --save_steps 2000 
+```
 
-**TODO?**
+2. GTE/NQ Corrector
+```
+python run.py --per_device_train_batch_size 300 --per_device_eval_batch_size 300 --max_seq_length 32 --model_name_or_path t5-base --dataset_name nq --embedder_model_name gte_base --num_repeat_tokens 16 --embedder_no_grad True --num_train_epochs 5 --max_eval_samples 500 --eval_steps 20000 --warmup_steps 10000 --bf16=1 --use_wandb=1 --use_frozen_embeddings_as_input True --experiment corrector --lr_scheduler_type constant_with_warmup --exp_group_name oct-gtr --learning_rate 0.001 --output_dir ./saves/gte-corrector-nq-full-5epoch-300 --save_steps 2000 --corrector_model_alias gte_nq__msl32__5epoch
+```
+
+### Evaluating pre-trained GTR/NQ on additional data
+Note: If no `random_texts.txt` is available, run `python create_random_texts.py`. 
+
+We use the following commands to evaluate the authors' pre-trained GTR/NQ models on additional OOD data:
+```
+python evaluate_ood.py --model gtr-base --dataset random_texts --num_steps 0 --batch_size 384
+python evaluate_ood.py --model gtr-base --dataset random_texts --num_steps 20 --batch_size 384
+
+python evaluate_ood.py --model gtr-base --dataset biosses --num_steps 0 --batch_size 384
+python evaluate_ood.py --model gtr-base --dataset biosses --num_steps 20 --batch_size 384
+
+python evaluate_ood.py --model gtr-base --dataset medrxiv --num_steps 0 --batch_size 384
+python evaluate_ood.py --model gtr-base --dataset medrxiv --num_steps 20 --batch_size 384
+
+python evaluate_ood.py --model gtr-base --dataset biorxiv --num_steps 0 --batch_size 384
+python evaluate_ood.py --model gtr-base --dataset biorxiv --num_steps 20 --batch_size 384
+```
+
+The commands are replicated inside `evaluate_ood.py` in the `ood-ablation` folder. 
 
 ## Evaluation results 
 
