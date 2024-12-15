@@ -105,28 +105,22 @@ def main(args):
     elif args.eval_dataset == "hotpotqa":
         ds = load_dataset("BeIR/hotpotqa", "corpus", cache_dir="/gscratch/xlab/hallisky/cache/")
     elif args.eval_dataset == "fiqa":
-        # TODO: Skyler, this dataset is only 57.6K rows long. Will that be a problem?
         ds = load_dataset("BeIR/fiqa", "corpus", cache_dir="/gscratch/xlab/hallisky/cache/")
     elif args.eval_dataset == "webis-touche2020":
         ds = load_dataset("BeIR/webis-touche2020", "corpus", cache_dir="/gscratch/xlab/hallisky/cache/")
     elif args.eval_dataset == "cqadupstack-generated-queries":
-        # TODO: this comes with a warning on hugging face 
         ds = load_dataset("BeIR/cqadupstack-generated-queries")
         corpus_key="train"
     elif args.eval_dataset == "arguana":
-        # this is also small, 8.67k rows 
         ds = load_dataset("BeIR/arguana", "queries")
         corpus_key = "queries"
     elif args.eval_dataset == "scidocs":
         ds = load_dataset("BeIR/scidocs", "corpus", cache_dir="/gscratch/xlab/hallisky/cache/")
     elif args.eval_dataset == "trec-covid":
-        # this is also small, 171k rows
         ds = load_dataset("BeIR/trec-covid", "corpus", cache_dir="/gscratch/xlab/hallisky/cache/")
     elif args.eval_dataset == "scifact":
-        # 5.18k rows 
         ds = load_dataset("BeIR/scifact", "corpus", cache_dir="/gscratch/xlab/hallisky/cache/")
     elif args.eval_dataset == "nfcorpus":
-        # 3.63k rows 
         ds = load_dataset("BeIR/nfcorpus", "corpus", cache_dir="/gscratch/xlab/hallisky/cache/")
     else: 
         print("Valid dataset not passed in")
