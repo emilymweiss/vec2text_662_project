@@ -107,14 +107,6 @@ def main(args):
         corrector_model = vec2text.models.CorrectorEncoderModel.from_pretrained("hallisky/gtr-nq-32-corrector-5epoch", cache_dir="/gscratch/xlab/hallisky/cache/")
     else:
         pass
-    ## Only need to run corrector
-    # elif args.model == "hallisky/gtr-nq-32-hypothesizer-5epoch":
-    #     encoder = AutoModel.from_pretrained("sentence-transformers/gtr-t5-base").encoder.to("cuda")
-    #     tokenizer = AutoTokenizer.from_pretrained("sentence-transformers/gtr-t5-base")
-
-    #     inversion_model = vec2text.models.InversionModel.from_pretrained("hallisky/gtr-nq-32-base-5epoch")
-    #     corrector_model = vec2text.models.CorrectorEncoderModel.from_pretrained("hallisky/gtr-nq-32-corrector-5epoch")
-
 
     corrector = vec2text.load_corrector(inversion_model, corrector_model)
 
