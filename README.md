@@ -46,6 +46,10 @@ We make the following models from our reproduction attempts publicly available o
 3. OpenAI, MSMARCO, 128, Base - https://huggingface.co/hallisky/ada-msmarco-128-base-5epoch
 4. OpenAI, MSMARCO, 128, Corrector - https://huggingface.co/hallisky/ada-msmarco-128-corrector-5epoch
 
+We make the following models from our ablations publicly available on HuggingFace:
+1. GTE, Natural Questions, 32, Base - https://huggingface.co/hallisky/gte-nq-32-base-5epoch
+2. GTE, Natural Questions, 32, Corrector - https://huggingface.co/hallisky/gte-nq-32-corrector-5epoch
+
 ## Training the models with the [vec2text](https://github.com/jxmorris12/vec2text/tree/master) codebase
 
 From the base [vec2text](https://github.com/jxmorris12/vec2text/tree/master) directory, we run the following commands to produce our models:
